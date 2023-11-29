@@ -1,5 +1,5 @@
 class CardsWithButton:
-    def __init__(self, img_url, title, detail, button_url,price,rank,button_tool_tip, button_name):
+    def __init__(self, img_url, title, button_url, price, rank):
       black_stars = int(rank*5)
       stars = ""
       for i in range(5):
@@ -7,19 +7,30 @@ class CardsWithButton:
           stars += "&#9733;"
           black_stars -= 1
         else:
-          stars += "&#9734;"        
+          stars += "&#9734;"
       self.html = f"""
-<div class="card" style="width: 18rem; margin-left: 10px;">
-  <img src="{img_url}" class="card-img-top" style="height: 180px;" alt="...">
-  <div class="card-body">
-    <p class="card-title" style="font-weight:bold">{title}</p>
-    <p class="card-text" style="height: 45px; overflow: hidden;">{detail}</p>
-    <p class="card-text" style="text-align: center; height:10px;"><small class="text-muted"> {price}</small></p>
-    <p class="card-text" style="text-align: center; height:10px;"> {stars}</p>
-    <a href="{button_url}" class="btn btn-light border border-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{button_tool_tip}">{button_name}</a>
-  </div>
-</div>
+          <div width="210px" class="gNMegz">
+            <a class="dNKDhq"
+              href="{button_url}">
+              <div class="dZZdhL">
+                <img
+                  alt="trousers, multipocket, pants, Men"
+                  src="{img_url}"
+                  style="object-fit:cover" class="fnyEKh">
+                <div color="#f8fafb" class="hMDtWW">{stars}</div>
+              </div>
+              <div class="icpQlK">
+                <div class="eJANjP">
+                  <div class="cikxeB">
+                    <div class="bkzXJS">{price}</div>
+                  </div>
+                </div>
+                <div class="kchfht">{title}</div>
+              </div>
+            </a>
+          </div>
          """
+
 class CardsWithTwoButton:
     def __init__(self, img_url, title, detail, button_url,button_tool_tip, button_name,button_url_,button_tool_tip_, button_name_):
         self.html = f"""
@@ -33,6 +44,7 @@ class CardsWithTwoButton:
   </div>
 </div>
          """
+
 class RelatedCards:
   def __init__(self,name,objlis):
     cards = ""
@@ -175,6 +187,17 @@ class RemoveBth:
           </div>
         </div>
     """
+
+class CustomBth:
+  def __init__(self,url, button_name):
+    self.html = f"""
+      <div class="card">
+          <div class="card-body bg-dark" style="height: 10%; width: 99vw; overflow: hidden;">
+            <a class = "btn btn-danger" href="{url}"> {button_name} </a>
+          </div>
+        </div>
+    """
+
 
 class InfoButtons:
   def __init__(self,name1,name2,value1,value2,url1,url2):
@@ -836,7 +859,7 @@ class TextBodyCardForSlider:
         <div class="card-body">
           {body}
         </div>
-        <div style="height: 10%; display:flex; flex-direction:row">
+        <div style="height: 10%; width: 400px; display:flex; flex-direction:row; justify-content: flex-start">
         <button class="btn btn-light border border-dark" style = "margin-right:4px;" onclick = {funcfor}> << </button>
         <button class="btn btn-light border border-dark" onclick = {funcbac}> >> </button>
         </div>
@@ -844,7 +867,7 @@ class TextBodyCardForSlider:
      """
 
 class brand_sliders:
-  def __init__(self,sector,objlis,counter,rating):
+  def __init__(self, sector, objlis, counter, rating):
     st = ""
     for obj in objlis:
       stars = ""
@@ -860,14 +883,29 @@ class brand_sliders:
           else:
             stars += "&#9734;"        
 
-      st += CardsWithButtonForSlider(f"items_{counter}",f"/media/{obj.logo}",obj.name,obj.description,f"/brands/detail/{obj.pk}",stars," more information ","show details").html
-
+      # st += CardsWithButtonForSlider(f"items_{counter}", f"/media/{obj.logo}",obj.name,obj.description,f"/brands/detail/{obj.pk}",stars," more information ","show details").html
+        st += ShopCard(f"items_{counter}", f"/media/{obj.logo}", obj.name, obj.description, f"/brands/detail/{obj.pk}").html
     self.html = f"""
     {TextBodyCardForSlider(counter,sector).html}
-    <div class = "slider_{counter} slider  bg-dark">
+    <div class = "slider_{counter} slider showcase_row">
     {st}
     </div>    
     """
+
+class ShopCard:
+    def __init__(self, class_name, img_url, name, description, detail_url):
+        self.html = f"""
+            <div class="col-sm-4 custom_showcase custom_showcase__1 {class_name}" style="width: 400px; height: 300px;">
+                <a href="{detail_url}">
+                    <img src="{img_url}" alt="{name}">
+                    <div class="showcase_text">
+                        <h4>{name}</h4>
+                        <h3>{description}</h3>
+                    </div>
+                </a>
+            </div>
+        """
+
 class EnterCashBar:
   def __init__(self,cashin_url,cashout_url,complete_trans_url):
     self.html = f"""

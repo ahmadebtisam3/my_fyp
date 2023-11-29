@@ -1,103 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href = "/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/utility_classes.css" rel="stylesheet" />
+    <link href="/static/css/assets.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href="/static/css/responsive.css" rel="stylesheet" />
     <title>TradingCenter</title>
 </head>
+
 <body class="bg-dark">
-<style>
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family:serif;
-}
-</style>
+    <div id="wrapper1" style="z-index: 1000;">
+        <div id="wrapper2">
+            <header>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TradingCenter</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/market_page/">Home</a>
-        </li>
-        <li class="nav-item">
-          {% if user.is_authenticated %}
-          <a class="nav-link" href="/accounts/logout/">LogOut</a>
-          {% else %}
-          <a class="nav-link" href="/accounts/login/">LogIn</a>
-          {% endif %}
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Products Menu
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/software/list/">Softwares</a></li>
-            <li><a class="dropdown-item" href="/inventory/list/">Items</a></li>
-            <li><a class="dropdown-item" href="/services/list/">Services</a></li>
-          </ul>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item"><button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Dashboard</button>
-        </li>
-        {% endif %}
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" value="{{ request.GET.si }}" name="si" aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit">Search</button>
-      </form>
+                <div id="header_top" class="clearfix" style="position: relative; top: 0px; height: 100px;">
+
+                    <!-- LOGO -->
+                    <div class="logo_main" style="height: 100px;">
+                    </div>
+
+                    <div class="header_right">
+
+                        <ul class="header_user">
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a href="/accounts/logout/" id="customer_login_link"><span class="header_user__text">Log
+                                        Out</span></a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="/accounts/login/" id="customer_login_link"><span class="header_user__text">Log
+                                        In</span></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+
+                        <!-- HEADER SEARCH -->
+                        <div class="header_search">
+                            <form action="" method="get" class="search-form" role="search">
+                                <input id="search-field" name="si" aria-label="Search" type="text"
+                                    placeholder="SEARCH.." class="hint" value="SEARCH..">
+                                <button id="search-submit" type="submit"><span class="fa fa-search"></span></button>
+                            </form>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <ul class="header_user">
+
+                            <li><a href="/brands/cart/" id="customer_login_cart_link"><span
+                                        class="header_user__text">Cart</span></a></li>
+                        </ul>
+
+                        <ul class="header_user">
+                            <li><a href="/brands/list/" id="customer_create_shop"><span class="header_user__text">Create
+                                        Shop</span></a></li>
+                        </ul>
+
+                        <ul class="header_user">
+                            <li><a href="/send/message/" id="customer_messages"><span
+                                        class="header_user__text">Messages</span></a></li>
+                        </ul>
+
+                        {% endif %}
+                    </div>
+
+                    <!-- MEGAMENU -->
+                    <div id="megamenu">
+                        <div class="header_wrap stick_banner">
+                            <div class="banner_text">
+                                <h3><b>Upgrade</b> to a Fully-fledged <b>Styler!</b></h3>
+                                <h4>Featuring a additional pages, plugins, beautiful pictures and fully functionality!
+                                </h4>
+                                <a href="https://www.templatemonster.com/shopify-themes/57943.html"
+                                    class="btn_banner">SHOP NOW!</a>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <ul class="sf-menu megamenu_desktop visible-md visible-lg sf-js-enabled sf-arrows">
+                                <li class="megamenu_item_1">
+                                    <a href="/market_page/" class="active"
+                                        style="height: 100px; line-height: 100px;">Home</a>
+                                </li>
+
+                                <li class="megamenu_item_2">
+                                    <a href="" class="sf-with-ul"
+                                        style="height: 100px; line-height: 100px;" >Products</a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/software/list/">Softwares</a></li>
+                                        <li><a class="dropdown-item" href="/inventory/list/">Items</a></li>
+                                        <li><a class="dropdown-item" href="/services/list/">Services</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pseudoStickyBlock" style="position: relative; display: block; height: 0px;"></div>
+            </header>
+
+
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
-  </div>
-</nav>
-{% if user.is_authenticated %}
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">{{ user.username }}</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-<div class="list-group">
-  <a href="/brands/list/" class="list-group-item list-group-item-action list-group-item-light">Business</a>
-  <a href="/sector/list/" class="list-group-item list-group-item-action list-group-item-light">Register new Business</a>
-  <a href="/send/message/" class="list-group-item list-group-item-action list-group-item-light">Messages </a>
-  <a href="/customer/finantial/" class="list-group-item list-group-item-action list-group-item-light">Account</a>
- <!-- Orders Drop Box -->
-  <div class="dropdown">
-    <button class="list-group-item list-group-item-action list-group-item-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-      User Orders
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li>  <a href="/brands/cart/" class="list-group-item list-group-item-action list-group-item-light">Orders </a></li>
-      <li>  <a href="/brands/cart/complete" class="list-group-item list-group-item-action list-group-item-light"> Completed Orders </a></li>
-    </ul>
-  </div>
- <!-- Cart Drop Box -->
-  <div class="dropdown">
-    <button class="list-group-item list-group-item-action list-group-item-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-      User Cart
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-      <li>  <a href="/customers/cart/" class="list-group-item list-group-item-action list-group-item-light">Cart</a></li>
-      <li>  <a href="/customers/cart/complete" class="list-group-item list-group-item-action list-group-item-light">Completed Cart Orders</a></li>
-      <li>  <a href="/customer/cancel/cart" class="list-group-item list-group-item-action list-group-item-light">Cancel Orders</a></li>
-    </ul>
-  </div>
- </div>
-  </div>
-</div>
-{% endif %}
-
-    {% block content %}
-    {% endblock %}
-
-  </body>
+</body>
 <script src="/static/sidebars.js"></script>
-<script src="/static/js/bootstrap.bundle.min.js" ></script>
+<script src="/static/assets.js"></script>
+<script src="/static/jquery.fancybox.min.js"></script>
+<script src="/static/jquery.api.js"></script>
+<script src="/static/jquery.fancybox.min.js"></script>
+<script src="/static/jquery.ajax-cart.js"></script>
+<script src="/static/shop.js"></script>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+
 </html>
