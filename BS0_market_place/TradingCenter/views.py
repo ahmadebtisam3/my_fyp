@@ -242,8 +242,8 @@ class MarketView(ListView):
                     serv += m.service_order.objects.filter(
                         Q(request_id__service_id__brands_product=obj) & Q(is_commited_by_owner=False)).count()
             value = inv_num + serv
-            context['component'].append(c.InfoButtons(name1="msg", name2="orders", value1=m.message.objects.filter(
-                Q(reciver=self.request.user.customer) & Q(revived=False)).count(), value2=value, url1="/send/message/", url2="/brands/cart/"))
+            # context['component'].append(c.InfoButtons(name1="msg", name2="orders", value1=m.message.objects.filter(
+            #     Q(reciver=self.request.user.customer) & Q(revived=False)).count(), value2=value, url1="/send/message/", url2="/brands/cart/"))
         for sec in context['object_list']:
             dic = {}
             dic['name'] = c.TextBodyCard(sec.name)
@@ -284,6 +284,7 @@ class MyBrandsList(ListView):
             obj = m.brand.objects.filter(
                 Q(owner=self.request.user.customer) & Q(is_active=True))
             for obj in obj:
+                context['component'].append(c.CustomBth('/sector/list/', 'Register new Business'))
                 context['component'].append(c.CardsWithTwoButton(
                     f"/media/{obj.logo}", obj.name, obj.description, f"/brands/detail/{obj.pk}", " more information ", "show details", f"/brand/remove/{obj.pk}", " delete ", "Remove"))
         return context
@@ -419,8 +420,8 @@ class InventoryManagerListView(ListView):
         context['component'] = []
         for obj in context['object_list'].order_by("selling_price"):
             if obj.is_active and obj.brands_product.is_active:
-                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"detail/{obj.pk}",
-                                            f"price {obj.selling_price}PKR", get_inventory_complete_total(obj.pk), "see more details", "detail"))
+                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"detail/{obj.pk}",
+                                            f"{obj.selling_price}PKR", get_inventory_complete_total(obj.pk)))
         print()
         return context
 
@@ -439,8 +440,8 @@ class SoftwareManagerListView(ListView):
         context['component'] = []
         for obj in context['object_list'].order_by("selling_price"):
             if obj.is_active and obj.brands_product.is_active:
-                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"detail/{obj.pk}",
-                                            f"price {obj.selling_price}PKR", get_software_complete_total(obj.pk), "see more details", "detail"))
+                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"detail/{obj.pk}",
+                                            f"{obj.selling_price}PKR", get_software_complete_total(obj.pk)))
         return context
 
 
@@ -458,8 +459,8 @@ class ServicesManagerListView(ListView):
         context['component'] = []
         for obj in context['object_list'].order_by("package_price"):
             if obj.is_active and obj.brands_product.is_active:
-                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"detail/{obj.pk}",
-                                            f"price {obj.package_price}PKR ", get_service_complete_total(obj.pk), "see more details", "detail"))
+                context['component'].append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"detail/{obj.pk}",
+                                            f"{obj.package_price}PKR ", get_service_complete_total(obj.pk)))
         return context
 
 
@@ -587,8 +588,8 @@ class InventoryDetailView(DetailView):
                     obj = objl.second
                 else:
                     obj = objl.first
-                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"{obj.pk}",
-                            f"price {obj.selling_price}PKR", get_inventory_complete_total(obj.pk), "see more details", "detail"))
+                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"{obj.pk}",
+                            f"{obj.selling_price}PKR", get_inventory_complete_total(obj.pk)))
             context['component'].append(c.RelatedCards("Related Items", comp))
 
 
@@ -702,8 +703,8 @@ class SoftwareDetailView(DetailView):
                     obj = objl.second
                 else:
                     obj = objl.first
-                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"{obj.pk}",
-                            f"price {obj.selling_price}PKR", get_software_complete_total(obj.pk), "see more details", "detail"))
+                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"{obj.pk}",
+                            f"{obj.selling_price}PKR", get_software_complete_total(obj.pk)))
             context['component'].append(c.RelatedCards("Related Items", comp))
 
 
@@ -858,8 +859,8 @@ class ServicesDetailView(DetailView):
                     obj = objl.second
                 else:
                     obj = objl.first
-                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, obj.description, f"{obj.pk}",
-                            f"price {obj.package_price}PKR", get_service_complete_total(obj.pk), "see more details", "detail"))
+                comp.append(c.CardsWithButton(f"/media/{obj.pic}", obj.name, f"{obj.pk}",
+                            f"{obj.package_price}PKR", get_service_complete_total(obj.pk)))
             context['component'].append(c.RelatedCards("Related Items", comp))
 
 
