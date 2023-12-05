@@ -10,7 +10,7 @@
     <link href="/static/css/assets.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
     <link href="/static/css/responsive.css" rel="stylesheet" />
-    <title>TradingCenter</title>
+    <title>All Buyers Market Place</title>
 </head>
 
 <body class="bg-dark">
@@ -21,7 +21,10 @@
                 <div id="header_top" class="clearfix" style="position: relative; top: 0px; height: 100px;">
 
                     <!-- LOGO -->
-                    <div class="logo_main" style="height: 100px;">
+                    <div class="logo_main" style="height: 100%; width: 280px; display: flex; align-items: center; justify-content: center;">
+                        <div class="logo_link">
+                            <a href="/market_page/">All Buyers Market Place</a>
+                        </div>
                     </div>
 
                     <div class="header_right">
@@ -108,6 +111,82 @@
 
             {% block content %}
             {% endblock %}
+            <footer>
+          <div class="container footer_border">
+            <div class="row">
+              <div class="col-lg-3 col-sm-4 col-xs-4 footer_block footer_block__1">
+                <h3>Information</h3>
+                <ul class="footer_links">
+                  <li class="active"><a href="/market_page/" title="">Home page</a></li>
+                  <li><a href="/send/message/" title="">Messages</a></li>
+                </ul>
+              </div>
+
+              <div class="col-lg-3 col-sm-4 col-xs-4 footer_block footer_block__2">
+                <h3>My account</h3>
+                <ul class="footer_links">
+                  <li><a href="/customers/cart/" title="">Cart</a></li>
+                  <li><a href="/brands/list/" title="">Shop</a></li>
+                </ul>
+              </div>
+
+              <div class="col-lg-3 col-sm-4 col-xs-4 footer_block footer_block__3">
+                <h3>Categories</h3>
+                <ul class="footer_links">
+
+                  <li><a href="/software/list/" title="">Software</a></li>
+                  <li><a href="/inventory/list/" title="">Products</a></li>
+                    <li><a href="/services/list/" title="">Services</a></li>
+
+                </ul>
+              </div>
+
+
+              <div class="col-lg-3 col-sm-12 footer_block footer_block__4">
+                <h3>Newsletter</h3>
+
+                <div class="footer_newsletter">
+
+                  <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8"
+                    class="contact-form"><input type="hidden" name="form_type" value="customer"><input type="hidden"
+                      name="utf8" value="✓">
+                    <input type="hidden" name="contact[tags]" value="prospect,newsletter" id="contact_tags1">
+                    <input type="hidden" name="contact[first_name]" value="Newsletter" id="newsletter-first-name1">
+                    <input type="hidden" name="contact[last_name]" value="Subscriber" id="newsletter-last-name1">
+                    <input type="email" name="contact[email]" id="contact_email_footer" placeholder="ENTER YOUR EMAIL"
+                      class="hint" value="ENTER YOUR EMAIL">
+                    <button type="submit" name="subscribe" class="btn"><span id="right_arrow"></span></button>
+
+
+                  </form>
+
+                </div>
+
+                <ul class="footer_social">
+                  <li><a href="https://twitter.com/templatemonster" id="twitter" class="fa fa-twitter-square"></a></li>
+                  <li><a href="https://www.facebook.com/TemplateMonster" id="facebook"  class="fa fa-facebook-f"></a></li>
+                  <li><a href="https://www.youtube.com/user/TemplateMonsterCo" id="youtube" class="fa fa-youtube-square"></a></li>
+
+
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="copyright">
+            <div class="container">
+              <p role="contentinfo">© 2023 Apparel. All Rights Reserved. <a target="_blank" rel="nofollow"
+                  href="https://www.shopify.com/?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered
+                  by Shopify</a>.<span> Design by <a href="https://zemez.io/">Zemez</a></span></p>
+              <!-- Design by templatemonster.com -->
+            </div>
+          </div>
+
+        </footer>
+
         </div>
     </div>
 </body>

@@ -2764,7 +2764,7 @@ ul.footer_links li a:hover {
     vertical-align: middle;
     width: 50px;
     height: 50px;
-    font-size: 17px;
+    font-size: 45px;
     border: 2px solid #4c4c4c;
     color: #888
 }
@@ -4471,4 +4471,15 @@ ul.product_listing_related {
 .template-404 h2,
 .template-404 h2 a {
     vertical-align: baseline
+}
+
+
+.logo_link a {
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #888
+}
+
+.logo_link a:hover {
+    color: #fff
 }
