@@ -3,9 +3,9 @@ from TradingCenter import models
 from django.contrib.admin.options import ModelAdmin
 # Register your models here.
 
-admin.site.site_header = "Welcome to TradingCenter Admin Panel"
-admin.site.site_title = "TradingCenter"
-admin.site.index_title = "TradingCenter"
+admin.site.site_header = "Welcome to All Buyers Market Admin Panel"
+admin.site.site_title = "All Buyers Market"
+admin.site.index_title = "All Buyers Market"
 
 class FinantialAccount(ModelAdmin):
     list_display = ["balance", "commited_balance"]
