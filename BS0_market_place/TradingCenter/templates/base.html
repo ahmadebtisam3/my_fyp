@@ -13,11 +13,12 @@
     <title>All Buyers Market Place</title>
 </head>
 
-<body class="bg-dark">
+<body>
     <div id="wrapper1" style="z-index: 1000;">
         <div id="wrapper2">
             <header>
-
+    
+                
                 <div id="header_top" class="clearfix" style="position: relative; top: 0px; height: 100px;">
 
                     <!-- LOGO -->
@@ -29,7 +30,7 @@
 
                     <div class="header_right">
 
-                        <ul class="header_user">
+                        <ul class="header_user" >
                             {% if user.is_authenticated %}
                             <li>
                                 <a href="/accounts/logout/" id="customer_login_link"><span class="header_user__text">Log
@@ -44,16 +45,16 @@
                         </ul>
 
                         <!-- HEADER SEARCH -->
-                        <div class="header_search">
-                            <form action="" method="get" class="search-form" role="search">
+                        <div class="header_search" >
+                            <form action="" method="get" class="search-form"  role="search">
                                 <input id="search-field" name="si" aria-label="Search" type="text"
-                                    placeholder="SEARCH.." class="hint" value="SEARCH..">
-                                <button id="search-submit" type="submit"><span class="fa fa-search"></span></button>
+                                    placeholder="SEARCH.." class="hint" value="SEARCH.." style="background: #88888888; color: white;">
+                                <button id="search-submit" type="submit" style="background: #88888888; color: white;"><span class="fa fa-search" ></span></button>
                             </form>
                         </div>
                         {% if user.is_authenticated %}
                         <ul class="header_user">
-
+                 <!--All right side header section-->
                             <li><a href="/customers/cart/" id="customer_login_cart_link"><span
                                         class="header_user__text">Cart</span></a></li>
                         </ul>
@@ -85,20 +86,23 @@
                         <div class="container">
                             <ul class="sf-menu megamenu_desktop visible-md visible-lg sf-js-enabled sf-arrows">
                                 <li class="megamenu_item_1">
-                                    <a href="/market_page/" class="active"
-                                        style="height: 100px; line-height: 100px;">Home</a>
+                                    <a href="/market_page/" 
+                                        style="height: 100px; line-height: 100px; color: white;">Home</a>
                                 </li>
+                                  <li><a class="dropdown-item" href="/software/list/" style="height: 100px; line-height: 100px; color: white;">Softwares</a></li>
+                                        <li><a class="dropdown-item" href="/inventory/list/" style="height: 100px; line-height: 100px; color: white;">Items</a></li>
+                                        <li><a class="dropdown-item" href="/services/list/" style="height: 100px; line-height: 100px; color: white;">Services</a></li>
 
-                                <li class="megamenu_item_2">
+                                <!-- <li class="megamenu_item_2">
                                     <a href="" class="sf-with-ul"
                                         style="height: 100px; line-height: 100px;" >Products</a>
 
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="/software/list/">Softwares</a></li>
                                         <li><a class="dropdown-item" href="/inventory/list/">Items</a></li>
                                         <li><a class="dropdown-item" href="/services/list/">Services</a></li>
-                                    </ul>
-                                </li>
+                                    </div>
+                                </li> -->
 
                             </ul>
 

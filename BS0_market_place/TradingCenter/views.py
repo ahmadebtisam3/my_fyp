@@ -419,7 +419,7 @@ class InventoryManagerListView(ListView):
         si = self.request.GET.get("si")
         if si:
             context['object_list'] = m.inventory_managment.objects.filter(Q(name__icontains=si) | Q(description__icontains=si) | Q(long_description__icontains=si) | Q(selling_price__icontains=si) | Q(brands_product__name__icontains=si) | Q(
-                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(brands_product=context['object'].pk) & Q(is_active=True) & Q(brands_product__is_active=True))).order_by("selling_price")
+                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(is_active=True) & Q(brands_product__is_active=True))).order_by("selling_price")
         context['name'] = "Inventory Products"
         context['component'] = []
         for obj in context['object_list'].order_by("selling_price"):
@@ -439,7 +439,7 @@ class SoftwareManagerListView(ListView):
         si = self.request.GET.get("si")
         if si:
             context['object_list'] = m.software_manager.objects.filter(Q(name__icontains=si) | Q(description__icontains=si) | Q(long_description__icontains=si) | Q(selling_price__icontains=si) | Q(brands_product__name__icontains=si) | Q(
-                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(brands_product=context['object'].pk) & Q(is_active=True) & Q(brands_product__is_active=True))).order_by("selling_price")
+                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(is_active=True) & Q(brands_product__is_active=True))).order_by("selling_price")
         context['name'] = "Softwares Products"
         context['component'] = []
         for obj in context['object_list'].order_by("selling_price"):
@@ -458,7 +458,7 @@ class ServicesManagerListView(ListView):
         si = self.request.GET.get("si")
         if si:
             context['object_list'] = m.services_manager.objects.filter(Q(name__icontains=si) | Q(description__icontains=si) | Q(long_description__icontains=si) | Q(package_price__icontains=si) | Q(brands_product__name__icontains=si) | Q(
-                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(brands_product=context['object'].pk) & Q(is_active=True) & Q(brands_product__is_active=True))).order_by("package_price")
+                brands_product__description__icontains=si) | Q(brands_product__location__icontains=si) & (Q(is_active=True) & Q(brands_product__is_active=True))).order_by("package_price")
         context['name'] = "Services Offers"
         context['component'] = []
         for obj in context['object_list'].order_by("package_price"):
@@ -1124,6 +1124,8 @@ class ClientCartOrdersView(TemplateView):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             context['component'] = []
+            context['component'].append(c.CustomBth([{'url': '/customers/cart/complete',
+                                                      'name': 'Track Previous Orders'}]))
             context['name'] = f"{self.request.user.username}'s Cart"
             val = self.request.GET.get(self.name)
             if val == self.full_view:
@@ -2242,7 +2244,7 @@ def inventory_owner_simple_commit(request, pk):
 
 def service_owner_commit(request, pk):
     obj = m.service_order.objects.get(pk=pk)
-    full_commit(obj, obj.request_id.service_id, obj.request_id.customer_id,
+    full_commit(obj, obj.request_id.service_id, obj.request_id.customer_id.customers_account,
                 obj.request_id.service_id.brands_product.owner.customers_account)
     return render(request, componentDetailView, {"component": [c.HeaderAndFooterCard(obj.request_id.service_id.name, f" Your Order Has Been Commited payment shall be transfer after soon ", "/brands/cart/", "Back to Cart")]})
 

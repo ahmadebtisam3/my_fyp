@@ -103,6 +103,7 @@ class HorizontalImageCardWidoutButtons:
       </div> 
       </div>       
         """
+CARD_AMOUNT = {}
 class HorizontalImageCardWithForInventory:
   def __init__(self,img_url, title, detail,price,amount,dir,amo:str):
     if amo:
@@ -112,12 +113,14 @@ class HorizontalImageCardWithForInventory:
           amo += 1
         elif dir == "<<":
           amo -= 1
+        CARD_AMOUNT[title] = amo
       else:
-        amo = 0
+        amo = CARD_AMOUNT.get(title, 0)
     else:
-      amo = 0
+      amo = CARD_AMOUNT.get(title, 0)
     if amo > amount or amo < 0:
-        amo = 0
+        amo = CARD_AMOUNT.get(title, 0)
+
     self.html = f"""
         <div class="card mb-3 bg-dark">
       <div class="row g-0">
@@ -304,7 +307,7 @@ class HeaderAndFooterCard:
 class MessageCard:
   def __init__(self,title,subject,button_url,button_color):
     self.html = f"""
-  <div class="card bg-dark border-light" style="text-aligh:center;color:white">
+  <div class="card bg-dark border-light" style="text-aligh:center;color:black">
     <h5 class="card-header border-light">{title}</h5>
     <div class="card-body">
       <p class="card-text">{subject}</p>
@@ -473,7 +476,7 @@ class FinantialTableBalance:
 class CreateFinnantialForm:
   def __init__(self,error = ""):
       self.html = f"""
-    <div class= "navbar navbar-expand-lg navbar-dark bg-dark" style="color:white">
+    <div class= "navbar navbar-expand-lg bg-dark navbar-dark " style="color:white">
     <form>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">MSISD</span>
@@ -859,14 +862,11 @@ class TextBodyCardForSlider:
     funcfor = f"forword('_{counter}')"
     funcbac = f"backword('_{counter}')"
     self.html = f"""
-    <div style="height: 10%; color:white; display:flex; justify-contant:space-between; overflow: hidden;" class="bg-dark;">
+    <div style="height: 10%; border: 15px solid dark; color:White; text-align:center; font-size: 30px ;display:flex; justify-contant:space-between; overflow: hidden;" class="bg-dark container; ">
         <div class="card-body">
           {body}
         </div>
-        <div style="height: 10%; width: 400px; display:flex; flex-direction:row; justify-content: flex-start">
-        <button class="btn btn-light border border-dark" style = "margin-right:4px;" onclick = {funcfor}> << </button>
-        <button class="btn btn-light border border-dark" onclick = {funcbac}> >> </button>
-        </div>
+        
     </div>
      """
 
@@ -891,7 +891,7 @@ class brand_sliders:
         st += ShopCard(f"items_{counter}", f"/media/{obj.logo}", obj.name, obj.description, f"/brands/detail/{obj.pk}").html
     self.html = f"""
     {TextBodyCardForSlider(counter,sector).html}
-    <div class = "slider_{counter} slider showcase_row">
+    <div class = "slider_{counter} slider showcase_row" style=" align-items:center; display: flex; justify-content:center">
     {st}
     </div>    
     """
@@ -903,7 +903,7 @@ class ShopCard:
                 <a href="{detail_url}">
                     <img src="{img_url}" alt="{name}">
                     <div class="showcase_text">
-                        <h4>{name}</h4>
+                        <h2>{name}</h2>
                         <h3>{description}</h3>
                     </div>
                 </a>

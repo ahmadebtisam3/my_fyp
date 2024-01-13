@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 style="text-align: center;"> {{name}} </h1>
-<div style="display: flex;flex-direction: row; flex-wrap: wrap;justify-content: center;">
+<h1 style="text-align: center; background: #413d3d88; color: white; border-bottom: 5px solid white; border-radius: 10px;"> {{name}} </h1>
+<div style="display: flex;flex-direction: row; flex-wrap: wrap;justify-content: center; padding: 0 10px;" >
 {% for inv in component %}
-    <div style="margin: 2px;">
+    <div style="margin: 2px; padding: 0 13px; padding-top: 10px; border-right:1px solid white ; " class="custom_cardsMe">
         {{inv.html|safe}}
     </div>
 {% endfor %}
