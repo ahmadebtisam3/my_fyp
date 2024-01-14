@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch.dispatcher import receiver
+from django.db.models.signals import post_save
 # Create your models here.
 
 class finantial_account(models.Model):
@@ -286,3 +288,10 @@ class cash_out(models.Model):
     description = models.CharField(max_length = 30,null = True)
     date = models.DateTimeField(auto_now=True)
     amount = models.IntegerField()
+
+
+@receiver(post_save, sender=User)
+def save_custmer(sender, instance, created, **kwarg):
+    if created:
+        ins = finantial_account.objects.create()
+        customer.objects.create(user = instance,customers_account = ins)
