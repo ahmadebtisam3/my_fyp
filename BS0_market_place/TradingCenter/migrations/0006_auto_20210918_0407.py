@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('TradingCenter', '0005_alter_accounts_turn_ending_date'),
+        ("TradingCenter", "0005_alter_accounts_turn_ending_date"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='accounts_turn',
-            name='activate',
+            model_name="accounts_turn",
+            name="activate",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='accounts_turn',
-            name='total_gain',
+            model_name="accounts_turn",
+            name="total_gain",
             field=models.IntegerField(null=True),
         ),
         migrations.AlterField(
-            model_name='accounts_turn',
-            name='starting_date',
+            model_name="accounts_turn",
+            name="starting_date",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

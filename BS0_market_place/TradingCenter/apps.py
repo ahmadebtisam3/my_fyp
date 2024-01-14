@@ -1,7 +1,10 @@
 from django.apps import AppConfig
 
-print('**************************** apps')
+print("**************************** apps")
+
+
 class TradingcenterConfig(AppConfig):
-    name = 'TradingCenter'
+    name = "TradingCenter"
+
     def ready(self):
         import TradingCenter.mysignal

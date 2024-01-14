@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('TradingCenter', '0004_auto_20210917_0729'),
+        ("TradingCenter", "0004_auto_20210917_0729"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='accounts_turn',
-            name='ending_date',
+            model_name="accounts_turn",
+            name="ending_date",
             field=models.DateTimeField(null=True),
         ),
     ]

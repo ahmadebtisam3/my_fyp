@@ -79,7 +79,6 @@
 #     return data.decode("utf-8")
 
 
-
 # def pinless_connection(orderid,amount,mobile_no,email,otp,username,password):
 #     global storeid,Signature,X_IBM_Client_Id,X_IBM_Client_Secret,X_Channel
 #     conn = http.client.HTTPSConnection("api.eu-de.apiconnect.appdomain.cloud")

@@ -30,48 +30,56 @@ from .views import RegistrationView
 from registration.backends.admin_approval.views import ResendActivationView
 
 urlpatterns = [
-    path('activate/resend/',
-         ResendActivationView.as_view(),
-         name='registration_resend_activation'),
-    path('activate/complete/',
-         TemplateView.as_view(
-             template_name='registration/activation_complete_admin_pending.html'
-         ),
-         name='registration_activation_complete'),
+    path(
+        "activate/resend/",
+        ResendActivationView.as_view(),
+        name="registration_resend_activation",
+    ),
+    path(
+        "activate/complete/",
+        TemplateView.as_view(
+            template_name="registration/activation_complete_admin_pending.html"
+        ),
+        name="registration_activation_complete",
+    ),
     # Activation keys get matched by \w+ instead of the more specific
     # [a-fA-F0-9]{40} because a bad activation key should still get to the view;
     # that way it can return a sensible "invalid key" message instead of a
     # confusing 404.
-
-    path('activate/<activation_key>/',
-         ActivationView.as_view(),
-         name='registration_activate'),
-    path('approve/complete/',
-         TemplateView.as_view(
-             template_name='registration/admin_approve_complete.html'),
-         name='registration_approve_complete'),
-    path('approve/<int:profile_id>/',
-         permission_required('is_superuser')(ApprovalView.as_view()),
-         name='registration_admin_approve'),
-    path('register/complete/',
-         TemplateView.as_view(
-             template_name='registration/registration_complete.html'),
-         name='registration_complete'),
-    path('register/closed/',
-         TemplateView.as_view(
-             template_name='registration/registration_closed.html'),
-         name='registration_disallowed'),
+    path(
+        "activate/<activation_key>/",
+        ActivationView.as_view(),
+        name="registration_activate",
+    ),
+    path(
+        "approve/complete/",
+        TemplateView.as_view(template_name="registration/admin_approve_complete.html"),
+        name="registration_approve_complete",
+    ),
+    path(
+        "approve/<int:profile_id>/",
+        permission_required("is_superuser")(ApprovalView.as_view()),
+        name="registration_admin_approve",
+    ),
+    path(
+        "register/complete/",
+        TemplateView.as_view(template_name="registration/registration_complete.html"),
+        name="registration_complete",
+    ),
+    path(
+        "register/closed/",
+        TemplateView.as_view(template_name="registration/registration_closed.html"),
+        name="registration_disallowed",
+    ),
 ]
 
 
-if getattr(settings, 'INCLUDE_REGISTER_URL', True):
+if getattr(settings, "INCLUDE_REGISTER_URL", True):
     urlpatterns += [
-        path('register/',
-             RegistrationView.as_view(),
-             name='registration_register'),
+        path("register/", RegistrationView.as_view(), name="registration_register"),
     ]
 
-if getattr(settings, 'INCLUDE_AUTH_URLS', True):
+if getattr(settings, "INCLUDE_AUTH_URLS", True):
     urlpatterns += [
-        path('', include('registration.auth_urls')),
+        path("", include("registration.auth_urls")),
     ]
